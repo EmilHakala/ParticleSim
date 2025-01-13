@@ -14,7 +14,7 @@ int main(void)
     const int proton_amt = 10;
     const int neutron_amt = 10;
     const int electron_amt = 10;
-    
+    const float damping = 0.99;
     
     
     int proton_size = 10;
@@ -60,6 +60,10 @@ int main(void)
                 {
                     p_velocity[i].y *= -1;
                 }
+                
+                
+                p_velocity[i].x *= damping;
+                p_velocity[i].y *= damping;
                 
                 p_position[i].x += p_velocity[i].x;
                 p_position[i].y += p_velocity[i].y;
