@@ -1,5 +1,5 @@
 #include "raylib.h"
-
+#include <stdlib.h>
 
 int main(void)
 {
@@ -17,11 +17,19 @@ int main(void)
     
     
     int proton_size = 10;
-    int p_pos_x[proton_amt][1];
+    int p_pos[proton_amt][2];
+    
+    
+    int i;
+    for (i = 0; i < proton_amt + 1; i++)
+    {
+        p_pos[i][0] = rand() % screenWidth;
+        p_pos[i][1] = rand() % screenHeight;
+    }
     
     
     int neutron_size = 8;
-    int n_pos_x[neutron_amt][1];
+    int n_pos[neutron_amt][1];
     
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
@@ -36,7 +44,8 @@ int main(void)
             int i;
             for (i = 0; i < 10; i++)
             {
-                DrawCircle(GetScreenWidth()/2, GetScreenHeight()/2, proton_size, MAROON);
+                DrawCircle(p_pos[i][0], p_pos[i][1], proton_size, MAROON);
+                // DrawText(, 190, 200, 20, LIGHTGRAY);
             }
             
 
