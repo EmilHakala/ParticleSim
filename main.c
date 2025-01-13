@@ -16,15 +16,18 @@ int main(void)
     const int electron_amt = 10;
     
     
+    
     int proton_size = 10;
-    int p_pos[proton_amt][2];
+    Vector2 p_position[proton_amt];
+    Vector2 p_velocity[proton_amt];
+    
     
     
     int i;
     for (i = 0; i < proton_amt + 1; i++)
     {
-        p_pos[i][0] = rand() % screenWidth;
-        p_pos[i][1] = rand() % screenHeight;
+        p_position[i].x = rand() % screenWidth;
+        p_position[i].y = rand() % screenHeight;
     }
     
     
@@ -44,7 +47,9 @@ int main(void)
             int i;
             for (i = 0; i < 10; i++)
             {
-                DrawCircle(p_pos[i][0], p_pos[i][1], proton_size, MAROON);
+                
+                
+                DrawCircle(p_position[i].x, p_position[i].y, proton_size, MAROON);
                 // DrawText(, 190, 200, 20, LIGHTGRAY);
             }
             
