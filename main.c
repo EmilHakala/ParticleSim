@@ -60,6 +60,10 @@ int main(void)
                 {
                     p_velocity[i].y *= -1;
                 }
+                
+                p_position[i].x += p_velocity[i].x;
+                p_position[i].y += p_velocity[i].y;
+                
                 DrawCircle(p_position[i].x, p_position[i].y, proton_size, MAROON);
                 // DrawText(, 190, 200, 20, LIGHTGRAY);
             }
