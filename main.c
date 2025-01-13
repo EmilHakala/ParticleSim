@@ -28,6 +28,8 @@ int main(void)
     {
         p_position[i].x = rand() % screenWidth;
         p_position[i].y = rand() % screenHeight;
+        p_velocity[i].x = rand() % 5;
+        p_velocity[i].y = rand() % 5;
     }
     
     
@@ -45,10 +47,19 @@ int main(void)
             ClearBackground(BLACK);
             
             int i;
-            for (i = 0; i < 10; i++)
+            for (i = 0; i < proton_amt +1; i++)
             {
                 
                 
+                
+                if (p_position[i].x >= screenWidth || p_position[i].x <= 0)
+                {
+                    p_velocity[i].x *= -1;
+                }
+                if (p_position[i].y >= screenHeight || p_position[i].y <= 0)
+                {
+                    p_velocity[i].y *= -1;
+                }
                 DrawCircle(p_position[i].x, p_position[i].y, proton_size, MAROON);
                 // DrawText(, 190, 200, 20, LIGHTGRAY);
             }
