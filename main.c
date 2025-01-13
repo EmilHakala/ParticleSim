@@ -9,12 +9,13 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "Particle Simulation v.0.1");
 
-    SetTargetFPS(60);
+    SetTargetFPS(120);
     
-    const int proton_amt = 10;
+    const int proton_amt = 50;
     const int neutron_amt = 10;
     const int electron_amt = 10;
     const float damping = 0.99;
+    const int speed = 80;
     
     
     int proton_size = 10;
@@ -38,7 +39,7 @@ int main(void)
     
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // Update
+        float delta = GetFrameTime();
         
         BeginDrawing();
 
@@ -47,7 +48,7 @@ int main(void)
             ClearBackground(BLACK);
             
             int i;
-            for (i = 0; i < proton_amt +1; i++)
+            for (i = 0; i < proton_amt + 1; i++)
             {
                 
                 
@@ -61,12 +62,20 @@ int main(void)
                     p_velocity[i].y *= -1;
                 }
                 
+                int j;
+                for (j = 0; j < proton_amt + 1; i++)
+                {
+                    if (j != i)
+                    {
+                        
+                    }
+                }
                 
                 p_velocity[i].x *= damping;
                 p_velocity[i].y *= damping;
                 
-                p_position[i].x += p_velocity[i].x;
-                p_position[i].y += p_velocity[i].y;
+                p_position[i].x += p_velocity[i].x * speed * delta;
+                p_position[i].y += p_velocity[i].y * speed * delta;
                 
                 DrawCircle(p_position[i].x, p_position[i].y, proton_size, MAROON);
                 // DrawText(, 190, 200, 20, LIGHTGRAY);
