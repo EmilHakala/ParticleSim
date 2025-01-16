@@ -1,5 +1,7 @@
 #include "raylib.h"
+#include "raymath.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int main(void)
 {
@@ -9,7 +11,7 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "Particle Simulation v.0.1");
 
-    SetTargetFPS(120);
+    SetTargetFPS(60);
     
     const int proton_amt = 50;
     const int neutron_amt = 10;
@@ -67,7 +69,16 @@ int main(void)
                 {
                     if (j != i)
                     {
-                        
+                        float distance = Vector2Distance(p_position[j], p_position[i]);
+                        if (distance < 100)
+                        {
+                            Vector2 temp_velocity = Vector2Add(Vector2Normalize(p_position[i]), Vector2Normalize(p_position[j]));
+                            temp_velocity.x *= 100;
+                            temp_velocity.y *= 100;
+                            p_velocity[i] = Vector2Add(p_velocity[i], temp_velocity);
+                            p_velocity[j] = Vector2Add(p_velocity[j], temp_velocity);
+                        }
+                        break;
                     }
                 }
                 
